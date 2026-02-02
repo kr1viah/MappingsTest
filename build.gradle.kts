@@ -68,10 +68,23 @@ dependencies {
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
     implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
     @Suppress("UnstableApiUsage")
-    mappings(loom.layered {
-        @Suppress("UnstableApiUsage")
-        mappings(rootProject.file("mappings.tiny"))
-    })
+    if (sc.current.version == "1.20.1") {
+        mappings(loom.layered {
+            officialMojangMappings()
+            mappings(rootProject.file("mappings/obf.tiny"))
+        })
+    } else {
+        mappings(loom.layered {
+            mappings(rootProject.file("mappings/unobf.tiny"))
+        })
+    }
+//    mappings(loom.layered {
+//        if (sc.current.version == "1.20.1") {
+//            officialMojangMappings().mappings(mappings(rootProject.file("mappings/obf.tiny")))
+//        } else {
+//            mappings(rootProject.file("mappings/unobf.tiny"))
+//        }
+//    })
 }
 
 tasks.processResources {

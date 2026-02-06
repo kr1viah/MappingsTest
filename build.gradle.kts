@@ -66,14 +66,15 @@ java {
 
 dependencies {
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-    implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
     @Suppress("UnstableApiUsage")
     if (sc.current.version == "1.20.1") {
+        modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
         mappings(loom.layered {
             officialMojangMappings()
             mappings(rootProject.file("mappings/obf.tiny"))
         })
     } else {
+        implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
         mappings(loom.layered {
             mappings(rootProject.file("mappings/unobf.tiny"))
         })

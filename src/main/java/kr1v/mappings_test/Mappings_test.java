@@ -7,6 +7,6 @@ public class Mappings_test implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		Identifier.offff("wawa", "meow!");
+		Identifier.of("wawa", "meow!");
 	}
 }
